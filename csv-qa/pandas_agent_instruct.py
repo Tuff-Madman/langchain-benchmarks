@@ -57,8 +57,12 @@ if __name__ == "__main__":
                                  args_schema=PythonInputs)
         tools = [repl, retriever_tool]
         agent = ZeroShotAgent.from_llm_and_tools(llm=OpenAI(temperature=0, model="gpt-3.5-turbo-instruct"), tools=tools, prefix=template)
-        agent_executor = AgentExecutor(agent=agent, tools=tools, max_iterations=5, early_stopping_method="generate")
-        return agent_executor
+        return AgentExecutor(
+            agent=agent,
+            tools=tools,
+            max_iterations=5,
+            early_stopping_method="generate",
+        )
 
 
     client = Client()

@@ -52,9 +52,7 @@ def json_to_markdown_table(json_list):
 markdown_output = None
 with st.form('myform', clear_on_submit=True):
 
-    submitted = st.form_submit_button('Submit')
-    if submitted:
-		
+    if submitted := st.form_submit_button('Submit'):
         with st.spinner('Calculating...'):
 
             llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
@@ -62,7 +60,7 @@ with st.form('myform', clear_on_submit=True):
             extraction_output = chain(user_input_text,include_run_info=True)
             markdown_output = json_to_markdown_table(extraction_output['text'])
             run_id = extraction_output["__run"].run_id
-        
+
 # Feeback
 if markdown_output is not None:
     st.markdown(markdown_output)

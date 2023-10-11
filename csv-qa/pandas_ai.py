@@ -23,11 +23,15 @@ if __name__ == "__main__":
     ])
 
     def get_chain():
-        chain = {
-                    "input": lambda x: x["input_question"],
-                    "result": lambda x: pandas_ai(df, prompt=x['input_question'])
-                } | prompt | ChatOpenAI(temperature=0, model="gpt-4") | StrOutputParser()
-        return chain
+        return (
+            {
+                "input": lambda x: x["input_question"],
+                "result": lambda x: pandas_ai(df, prompt=x['input_question']),
+            }
+            | prompt
+            | ChatOpenAI(temperature=0, model="gpt-4")
+            | StrOutputParser()
+        )
 
 
     client = Client()

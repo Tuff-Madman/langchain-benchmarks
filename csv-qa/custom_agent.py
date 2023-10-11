@@ -63,8 +63,12 @@ if __name__ == "__main__":
                                  args_schema=PythonInputs)
         tools = [repl, retriever_tool]
         agent = OpenAIFunctionsAgent(llm=ChatOpenAI(temperature=0, model="gpt-4"), prompt=prompt, tools=tools)
-        agent_executor = AgentExecutor(agent=agent, tools=tools, max_iterations=5, early_stopping_method="generate")
-        return agent_executor
+        return AgentExecutor(
+            agent=agent,
+            tools=tools,
+            max_iterations=5,
+            early_stopping_method="generate",
+        )
 
 
     client = Client()

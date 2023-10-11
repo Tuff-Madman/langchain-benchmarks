@@ -24,12 +24,11 @@ query_text = st.text_input('Enter your question:', placeholder = 'Who was in cab
 # Form input and query
 result = None
 with st.form('myform', clear_on_submit=True):
-	submitted = st.form_submit_button('Submit')
-	if submitted:
-		with st.spinner('Calculating...'):
-			response = agent({"input": query_text}, include_run_info=True)
-			result = response["output"]
-			run_id = response["__run"].run_id
+    if submitted := st.form_submit_button('Submit'):
+        with st.spinner('Calculating...'):
+        	response = agent({"input": query_text}, include_run_info=True)
+        	result = response["output"]
+        	run_id = response["__run"].run_id
 if result is not None:
 	st.info(result)
 	col_blank, col_text, col1, col2 = st.columns([10, 2,1,1])
