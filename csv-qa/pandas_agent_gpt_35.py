@@ -13,14 +13,13 @@ if __name__ == "__main__":
         agent_executor_kwargs = {
             "handle_parsing_errors": True,
         }
-        agent = create_pandas_dataframe_agent(
+        return create_pandas_dataframe_agent(
             llm,
             df,
             agent_type=AgentType.OPENAI_FUNCTIONS,
             agent_executor_kwargs=agent_executor_kwargs,
-            max_iterations=5
+            max_iterations=5,
         )
-        return agent
 
 
     client = Client()

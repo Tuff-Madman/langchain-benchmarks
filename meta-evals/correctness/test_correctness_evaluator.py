@@ -180,7 +180,7 @@ async def test_metaeval_correctness(
         "model_name": model[1],
         "dataset_name": dataset_name,
         "evaluator": loader_kwargs["evaluator"],
-        "uid": str(uid),
+        "uid": uid,
     }
     if "prompt_lookup" in loader_kwargs:
         prompt_lookup = loader_kwargs.get("prompt_lookup")
